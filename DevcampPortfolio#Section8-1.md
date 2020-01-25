@@ -322,15 +322,79 @@ end
 
 Now we've organized our code in a much better fashion. The only constant in web development is change, so organizing code with best practices is important!
 
+### 5. Virtual Attributes
+Inside `schema.rb`, under `users`, we don't have a `first_name` attribute to use to greet a new user when they first sign in. So we use a virtual attribute.
 
+Go to the `user.rb` model and create `first_name` and `last_name` methods. `devise` by default has `:email` and `:password` validated, but we need to validate `:name` ourselves:
+```ruby
+# app/models/user.rb
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
+  validates_presence_of :name    # <- ADD THIS
+
+  def first_name				 # <- ADD THIS
+    self.name.split.first
+  end
+
+  def last_name					 # <- ADD THIS
+    self.name.split.last
+  end
+end
+```
+Now we can check it by going into console (works even if the user puts in only a first name or a last name):
+```ruby
+$ rails c
+ :001 > u = User.last
+  User Load (0.7ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1  [["LIMIT", 1]]
+ => #<User id: 6, email: "test5@test.com", name: "Test Five", created_at: "2020-01-25 20:00:38", updated_at: "2020-01-25 20:00:38">
+ :002 > u
+ => #<User id: 6, email: "test5@test.com", name: "Test Five", created_at: "2020-01-25 20:00:38", updated_at: "2020-01-25 20:00:38">
+ :003 > u.first_name
+ => "Test"
+ :004 > u.last_name
+ => "Five"
+  :006 > u.update!(name: "Cher")
+   (0.2ms)  BEGIN
+  User Update (0.6ms)  UPDATE "users" SET "name" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["name", "Cher"], ["updated_at", "2020-01-25 20:52:16.009315"], ["id", 6]]
+   (17.8ms)  COMMIT
+ => true
+ :007 > u
+ => #<User id: 6, email: "test5@test.com", name: "Cher", created_at: "2020-01-25 20:00:38", updated_at: "2020-01-25 20:52:16">
+ :008 > u.first_name
+ => "Cher"
+ :009 > u.last_name
+ => "Cher"
+```
+It would not work if we used `self.name.split[0]` and `self.name.split[1]`. But it works with `first` and `last`.
+
+Let's edit our `app/views/pages/home.html.erb`:
+```html
+<h1>Hi, <%= current_user.first_name if current_user %></h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+
+<h2>Blog Posts</h2>
+<%= @posts.inspect %>
+
+<h2>Skills</h2>
+<%= @skills.inspect %>
+```
+And now it works if we check [http://127.0.0.1:3000/](http://127.0.0.1:3000/) with a logged in user account.
+
+**NOTE:** `current_user` is a devise method to check if the user is logged in. If so, it gets a direct access to the `User` model.
+
+**NOTE 2:** If we get an error `NoMethodError in Pages#Home` for `undefined method 'split' for nil:NilClass`, it is because we have the `validates_presence_of :name`, and one of the test users we created does not have `:name`. So go into `edit` and add a name.
 
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkzODgzNzg0OSwxNzMzOTM3ODc5LDUzNT
-MyNDA0NiwtMTczODQ2Nzk0NCw0NTM2MjQxMDMsMTkxNzk2OTE3
-OSwtNTIyNDQzMjA0LC01MTk2NDIwODgsLTYyODU3MzU5MCwtOT
-Q1NzU3ODUsLTE2NDc1NDYwOTBdfQ==
+eyJoaXN0b3J5IjpbMTQ2ODQ3MTMwLDIwMjY5ODQ0MzgsMTA5OT
+Q0Mzc5MSwxOTU5OTA5Nzc5LDE5Mzg4Mzc4NDksMTczMzkzNzg3
+OSw1MzUzMjQwNDYsLTE3Mzg0Njc5NDQsNDUzNjI0MTAzLDE5MT
+c5NjkxNzksLTUyMjQ0MzIwNCwtNTE5NjQyMDg4LC02Mjg1NzM1
+OTAsLTk0NTc1Nzg1LC0xNjQ3NTQ2MDkwXX0=
 -->
