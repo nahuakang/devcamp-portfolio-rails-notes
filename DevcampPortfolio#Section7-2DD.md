@@ -1,4 +1,4 @@
-# DevCamp Ruby on Rails Notes 7
+# DevCamp Ruby on Rails Notes 8
 ## Section 7: Models - Deep Dive
 ### 1. Working w/ SQL & ActiveRecord
 #### A. Create the App
@@ -466,5 +466,5 @@ Completed 200 OK in 56ms (Views: 42.0ms | ActiveRecord: 10.8ms | Allocations: 22
 Much less console output than before :)
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY1NTI3ODEwMl19
+eyJoaXN0b3J5IjpbNDE4NTY5NDE3LC02NTUyNzgxMDJdfQ==
 -->
