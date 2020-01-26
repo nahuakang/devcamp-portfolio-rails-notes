@@ -87,15 +87,15 @@ $ rake routes
 ```
 Well, `resources` is a special word, like `show`, `update`, `destroy`. So `resources` contains all the routes shown in the command `rake routes`:
 ```
-Prefix 		Verb		URI Pattern			 		Controller#Action
-blogs 		GET    		/blogs(.:format)	 		blogs#index
-			POST   		/blogs(.:format) 	 		blogs#create
-new_blog 	GET		    /blogs/new(.:format) 		blogs#new
+Prefix 		Verb		URI Pattern		 	Controller#Action
+blogs 		GET    		/blogs(.:format) 		blogs#index
+		POST   		/blogs(.:format)  		blogs#create
+new_blog 	GET		/blogs/new(.:format)		blogs#new
 edit_blog 	GET    		/blogs/:id/edit(.:format)	blogs#edit
 blog 		GET    		/blogs/:id(.:format)		blogs#show
-			PATCH  		/blogs/:id(.:format)		blogs#update
-			PUT    		/blogs/:id(.:format)		blogs#update
-			DELETE 		/blogs/:id(.:format)		blogs#destroy
+		PATCH  		/blogs/:id(.:format)		blogs#update
+		PUT    		/blogs/:id(.:format)		blogs#update
+		DELETE 		/blogs/:id(.:format)		blogs#destroy
 ```
 
 The `:id` in the URI pattern is saying that it's expecting an ID, like `/blogs/3/edit`.
