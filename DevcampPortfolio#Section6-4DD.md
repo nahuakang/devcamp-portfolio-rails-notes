@@ -214,8 +214,8 @@ Take a look at `rake routes`:
 ```ruby
 $ rake routes | grep admin
 	admin_dashboard_main GET 	/admin/dashboard/main(.:format) 	admin/dashboard#main
-	admin_dashboard_user GET    /admin/dashboard/user(.:format)		admin/dashboard#user
-	admin_dashboard_blog GET    /admin/dashboard/blog(.:format)		admin/dashboard#blog
+	admin_dashboard_user GET    	/admin/dashboard/user(.:format)		admin/dashboard#user
+	admin_dashboard_blog GET    	/admin/dashboard/blog(.:format)		admin/dashboard#blog
 ```
 `Controller#Action` here becomes nested, too:
 ```
