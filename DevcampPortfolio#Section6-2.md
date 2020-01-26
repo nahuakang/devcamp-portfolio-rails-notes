@@ -71,7 +71,7 @@ If you run `rake routes`, you will see the change:
 ```
   about 	GET 	/about(.:format) 		pages#about
 contact 	GET 	/contact(.:format) 		pages#contact
-   root		GET		/						pages#home
+   root		GET	/				pages#home
 ```
 We have TOTAL CONTROL over what to pass in for specific `controller#action`.
 
@@ -91,14 +91,14 @@ end
 Now, check routes again:
 ```ruby
 $ rake routes | grep portfolio
-portfolios 		GET    /portfolios(.:format)			portfolios#index
-				POST   /portfolios(.:format)			portfolios#create 
+portfolios 	GET    /portfolios(.:format)			portfolios#index
+		POST   /portfolios(.:format)			portfolios#create 
 new_portfolio 	GET    /portfolios/new(.:format)		portfolios#new
-edit_portfolio 	GET    /portfolios/:id/edit(.:format)	portfolios#edit
-portfolio 		PATCH  /portfolios/:id(.:format)		portfolios#update
-				PUT    /portfolios/:id(.:format)		portfolios#update
-				DELETE /portfolios/:id(.:format)		portfolios#destroy
-				GET    /portfolio/:id(.:format)			portfolios#show
+edit_portfolio 	GET    /portfolios/:id/edit(.:format)		portfolios#edit
+portfolio 	PATCH  /portfolios/:id(.:format)		portfolios#update
+		PUT    /portfolios/:id(.:format)		portfolios#update
+		DELETE /portfolios/:id(.:format)		portfolios#destroy
+		GET    /portfolio/:id(.:format)			portfolios#show
 ```
 If we hit up the server and try to go to [http://127.0.0.1:3000/portfolio/1](http://127.0.0.1:3000/portfolio/1), we get an `# ActiveRecord::RecordNotFound in PortfoliosController#show` error.
 
@@ -114,13 +114,13 @@ end
 Check `rake routes` again:
 ```ruby
 $ rake routes | grep portfolio
-portfolios 		GET    /portfolios(.:format)			portfolios#index
-				POST   /portfolios(.:format)			portfolios#create 
+portfolios 	GET    /portfolios(.:format)			portfolios#index
+		POST   /portfolios(.:format)			portfolios#create 
 new_portfolio 	GET    /portfolios/new(.:format)		portfolios#new
-edit_portfolio 	GET    /portfolios/:id/edit(.:format)	portfolios#edit
-portfolio 		PATCH  /portfolios/:id(.:format)		portfolios#update
-				PUT    /portfolios/:id(.:format)		portfolios#update
-				DELETE /portfolios/:id(.:format)		portfolios#destroy
+edit_portfolio 	GET    /portfolios/:id/edit(.:format)		portfolios#edit
+portfolio 	PATCH  /portfolios/:id(.:format)		portfolios#update
+		PUT    /portfolios/:id(.:format)		portfolios#update
+		DELETE /portfolios/:id(.:format)		portfolios#destroy
 portfolio_show	GET    /portfolio/:id(.:format)			portfolios#show
 ```
 **Finally, update the views!** Go to index.html.erb and change any `portfolios#show`'s `portfolio_path` to `portfolio_show_path`:
