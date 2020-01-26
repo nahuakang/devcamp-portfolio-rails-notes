@@ -99,15 +99,15 @@ and visit [http://127.0.0.1:3000/portfolios](http://127.0.0.1:3000/portfolios) t
 First, before creating `new` and `create`, let's take a look at the routes via:
 ```
 $ rake routes | grep portfolio
-Prefix			Verb		URI Pattern				 		Controller#Action
-portfolios 		GET    		/portfolios(.:format)	 		portfolios#index
-				POST   		/portfolios(.:format)	 		portfolios#create
+Prefix		Verb		URI Pattern				Controller#Action
+portfolios 	GET    		/portfolios(.:format)	 		portfolios#index
+		POST   		/portfolios(.:format)	 		portfolios#create
 new_portfolio 	GET    		/portfolios/new(.:format)		portfolios#new
-edit_portfolio 	GET    		/portfolios/:id/edit(.:format)	portfolios#edit
-portfolio 		GET    		/portfolios/:id(.:format)		portfolios#show
-				PATCH  		/portfolios/:id(.:format)		portfolios#update
-				PUT    		/portfolios/:id(.:format)		portfolios#update
-				DELETE 		/portfolios/:id(.:format)		portfolios#destroy
+edit_portfolio 	GET    		/portfolios/:id/edit(.:format)		portfolios#edit
+portfolio 	GET    		/portfolios/:id(.:format)		portfolios#show
+		PATCH  		/portfolios/:id(.:format)		portfolios#update
+		PUT    		/portfolios/:id(.:format)		portfolios#update
+		DELETE 		/portfolios/:id(.:format)		portfolios#destroy
 ```
 `Prefix` is just our route methods, which we'll get into later. `Verb` is *HTTP request method*. `URI Pattern`  is what we type into the browser after the domain name. 
 
@@ -429,15 +429,15 @@ Finally, let's make it happen on `views` under `index.html.erb`:
 Well, remember the routes here:
 ```
 $ rake routes | grep portfolio
-Prefix			Verb		URI Pattern				 		Controller#Action
+Prefix			Verb		URI Pattern				Controller#Action
 portfolios 		GET    		/portfolios(.:format)	 		portfolios#index
-				POST   		/portfolios(.:format)	 		portfolios#create
-new_portfolio 	GET    		/portfolios/new(.:format)		portfolios#new
-edit_portfolio 	GET    		/portfolios/:id/edit(.:format)	portfolios#edit
+			POST   		/portfolios(.:format)	 		portfolios#create
+new_portfolio 		GET    		/portfolios/new(.:format)		portfolios#new
+edit_portfolio 		GET    		/portfolios/:id/edit(.:format)		portfolios#edit
 portfolio 		GET    		/portfolios/:id(.:format)		portfolios#show
-				PATCH  		/portfolios/:id(.:format)		portfolios#update
-				PUT    		/portfolios/:id(.:format)		portfolios#update
-				DELETE 		/portfolios/:id(.:format)		portfolios#destroy
+			PATCH  		/portfolios/:id(.:format)		portfolios#update
+			PUT    		/portfolios/:id(.:format)		portfolios#update
+			DELETE 		/portfolios/:id(.:format)		portfolios#destroy
 ```
 Prefix `portfolio` stands for all the verbs: `GET, PATCH, PUT, DELETE`. The way we tell how it works is in the `method` that we specify:
 ```ruby
