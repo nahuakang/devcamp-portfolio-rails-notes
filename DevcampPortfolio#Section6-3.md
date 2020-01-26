@@ -189,15 +189,15 @@ Now, inside `config.routes.rb`, let's add to `resources :blog`:
 Then we test it out with `rake routes`:
 ```
 $ rake routes | grep blog
-toggle_status_blog POST   /blogs/:id/toggle_status(.:format)                                                       blogs#toggle_status
-             blogs GET    /blogs(.:format)                                                                         blogs#index
-	               POST   /blogs(.:format)                                                                         blogs#create
-          new_blog GET    /blogs/new(.:format)                                                                     blogs#new
-         edit_blog GET    /blogs/:id/edit(.:format)                                                                blogs#edit
-              blog GET    /blogs/:id(.:format)                                                                     blogs#show
-                   PATCH  /blogs/:id(.:format)                                                                     blogs#update
-                   PUT    /blogs/:id(.:format)                                                                     blogs#update
-                   DELETE /blogs/:id(.:format)                                                                     blogs#destroy
+toggle_status_blog 	POST   /blogs/:id/toggle_status(.:format)	blogs#toggle_status
+blogs 			GET    /blogs(.:format)				blogs#index
+	               	POST   /blogs(.:format)				blogs#create
+new_blog 		GET    /blogs/new(.:format)			blogs#new
+edit_blog 		GET    /blogs/:id/edit(.:format)		blogs#edit
+blog			GET    /blogs/:id(.:format)			blogs#show
+			PATCH  /blogs/:id(.:format)			blogs#update
+			PUT    /blogs/:id(.:format)			blogs#update
+			DELETE /blogs/:id(.:format)			blogs#destroy
 ```
 We see a new route `toggle_status_blog` mapped to the action `blogs#toggle_status` with URI pattern: `/blogs/:id/toggle_status`.
 
