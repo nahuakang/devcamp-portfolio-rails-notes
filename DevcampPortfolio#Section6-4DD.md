@@ -15,15 +15,15 @@ $ rails db:migrate
 ### 2. Generate Scaffold Blog
 ```ruby
 $ rake routes
-Prefix 		Verb   		URI Pattern		 			Controller#Action
-blogs 		GET		    /blogs(.:format) 			blogs#index
-			POST   		/blogs(.:format) 			blogs#create
+Prefix 		Verb   		URI Pattern	 		Controller#Action
+blogs 		GET		/blogs(.:format)		blogs#index
+		POST   		/blogs(.:format) 		blogs#create
 new_blog 	GET    		/blogs/new(.:format)		blogs#new
 edit_blog 	GET    		/blogs/:id/edit(.:format) 	blogs#edit
 blog 		GET    		/blogs/:id(.:format) 		blogs#show
-			PATCH  		/blogs/:id(.:format)		blogs#update
-			PUT		    /blogs/:id(.:format) 		blogs#update
-			DELETE 		/blogs/:id(.:format)		blogs#destroy
+		PATCH  		/blogs/:id(.:format)		blogs#update
+		PUT		/blogs/:id(.:format) 		blogs#update
+		DELETE 		/blogs/:id(.:format)		blogs#destroy
 ```
 Again, `Prefix` is the method we can use inside our code to give us full route path. `Verb` is about clarifying if we're getting information from server or sending information to the server. `URI Pattern` is the path for URL. `Controller#Action` we already know well now.
 
@@ -270,14 +270,14 @@ end
 And run `rake routes`, we see we get all the routes defined:
 ```ruby
 $ rake routes | grep posts
-posts 		GET    	/posts(.:format)			posts#index
-			POST   	/posts(.:format)			posts#create
+posts 		GET    	/posts(.:format)		posts#index
+		POST   	/posts(.:format)		posts#create
 new_post 	GET    	/posts/new(.:format)		posts#new
 edit_post 	GET    	/posts/:id/edit(.:format)	posts#edit
 post 		GET    	/posts/:id(.:format)		posts#show
-			PATCH  	/posts/:id(.:format)		posts#update
-			PUT    	/posts/:id(.:format)		posts#update
-			DELETE 	/posts/:id(.:format)		posts#destroy
+		PATCH  	/posts/:id(.:format)		posts#update
+		PUT    	/posts/:id(.:format)		posts#update
+		DELETE 	/posts/:id(.:format)		posts#destroy
 ```
 
 #### B. ADD CONTROLLER TO CONTROLLERS
